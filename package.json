@@ -1,0 +1,49 @@
+{
+  "name": "qa-training-testcafe",
+  "version": "1.0.0",
+  "description": "This is the exercise of TestCafe",
+  "scripts": {
+    "test-chrome": "testcafe chrome ./tests",
+    "test-chrome-headless": "testcafe chrome:headless ./tests",
+    "test-firefox": "testcafe firefox ./tests",
+    "test-firefox-headless": "testcafe firefox:headless ./tests",
+    "test-ie": "testcafe ie ./tests",
+    "test-edge": "testcafe edge ./tests",
+    "test-opera": "testcafe opera ./tests",
+    "test-safari": "testcafe safari ./tests",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
+    "prettier-format": "prettier --config .prettierrc \"**/*.js\" \"**/*.json\" --write"
+  },
+  "author": "Erick Cuadrado",
+  "license": "ISC",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@commitlint/config-conventional": "^8.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "generator-testcafe-reporter": "^2.2.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^9.4.2",
+    "testcafe": "^1.14.2",
+    "testcafe-reporter-html": "^1.4.6",
+    "yo": "^4.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-testcafe": "^0.2.1",
+    "prettier": "^2.3.0"
+  }
+}
