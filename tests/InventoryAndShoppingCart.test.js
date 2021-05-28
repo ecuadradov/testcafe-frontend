@@ -1,20 +1,13 @@
-import loginPage from '../pages/LoginPage';
 import inventoryPage from '../pages/InventoryPage';
 import cartPage from '../pages/CartPage';
-import {
-    URLS,
-    CREDENTIALS,
-    PAGES,
-} from '../data/Constants';
+import {regularUser} from '../utils/RolesHelper';
+import {URLS, PAGES} from '../data/Constants';
 
 fixture('Inventory and Shoping feature tests').page(`${URLS.LOGIN_PAGE}`);
 
 test('Logout from product page', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
 
     // Act
     await t
@@ -27,10 +20,7 @@ test('Logout from product page', async (t) => {
 
 test('Navigate to the shopping cart', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
 
     // Act
     await t.click(inventoryPage.cartButton);
@@ -42,10 +32,7 @@ test('Navigate to the shopping cart', async (t) => {
 
 test('Add a single item to the shopping cart', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
 
     // Act
     await t.click(inventoryPage.backpackAddToCartButton);
@@ -62,10 +49,7 @@ test('Add a single item to the shopping cart', async (t) => {
 
 test('Add multiple items to the shopping cart', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
 
     // Act
     const productSelected = await inventoryPage.clickAllProducts();

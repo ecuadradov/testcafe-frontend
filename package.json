@@ -26,6 +26,7 @@
   "dependencies": {
     "@commitlint/config-conventional": "^8.2.0",
     "babel-eslint": "^10.1.0",
+    "dotenv": "^9.0.2",
     "eslint-plugin-import": "^2.18.2",
     "generator-testcafe-reporter": "^2.2.0",
     "husky": "^4.2.3",

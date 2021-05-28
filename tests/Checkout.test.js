@@ -1,11 +1,10 @@
-import loginPage from '../pages/LoginPage';
 import inventoryPage from '../pages/InventoryPage';
 import cartPage from '../pages/CartPage';
 import checkoutPage from '../pages/CheckoutPage';
 import checkoutCompletePage from '../pages/CheckoutCompletePage';
+import {regularUser} from '../utils/RolesHelper';
 import {
     URLS,
-    CREDENTIALS,
     USER_INFORMATION,
     MESSAGES,
     PAGES,
@@ -15,10 +14,7 @@ fixture('Checkout feature tests').page(`${URLS.LOGIN_PAGE}`);
 
 test('Continue with missing mail information', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
     await t
         .click(inventoryPage.backpackAddToCartButton)
         .click(inventoryPage.bikeLightAddToCartButton)
@@ -40,11 +36,7 @@ test('Continue with missing mail information', async (t) => {
 
 test('Fill user information', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
-    await t
+    await t.useRole(regularUser)
         .click(inventoryPage.backpackAddToCartButton)
         .click(inventoryPage.bikeLightAddToCartButton)
         .click(inventoryPage.cartButton)
@@ -68,10 +60,7 @@ test('Fill user information', async (t) => {
 
 test('Final order items', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
     const productsSelected = await inventoryPage.clickAllProducts();
 
     // Act
@@ -90,10 +79,7 @@ test('Final order items', async (t) => {
 
 test('Complete purchase', async (t) => {
     // Arrange
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
     await inventoryPage.clickAllProducts();
     await t.click(inventoryPage.cartButton)
         .click(cartPage.checkoutButton);

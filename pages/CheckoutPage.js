@@ -32,20 +32,20 @@ class CheckoutPage {
      * @param {string} postalCode Zip code to send on the form
     */
     async fillInformation(firstName, lastName, postalCode) {
-        if(firstName != null){
+        if (firstName != null) {
             await t.typeText(this.firstNameField, firstName, {
                 replace: true,
-            })
+            });
         }
-        if(lastName != null){
+        if (lastName != null) {
             await t.typeText(this.lastNameField, lastName, {
                 replace: true,
-            })
+            });
         }
-        if(postalCode != null){
+        if (postalCode != null) {
             await t.typeText(this.postalCodeField, postalCode, {
                 replace: true,
-            })
+            });
         }
         await t.click(this.continueButton);
     }

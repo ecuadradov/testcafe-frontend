@@ -1,20 +1,13 @@
 import loginPage from '../pages/LoginPage';
 import inventoryPage from '../pages/InventoryPage';
-import {
-    URLS,
-    CREDENTIALS,
-    MESSAGES,
-    PAGES,
-} from '../data/Constants';
+import {regularUser} from '../utils/RolesHelper';
+import {URLS, MESSAGES, CREDENTIALS, PAGES} from '../data/Constants';
 
 fixture('Login feature tests').page(`${URLS.LOGIN_PAGE}`);
 
 test('Login with a valid user', async (t) => {
     // Act block
-    await loginPage.submitLoginForm(
-        CREDENTIALS.VALID_USER.USERNAME,
-        CREDENTIALS.VALID_USER.PASSWORD
-    );
+    await t.useRole(regularUser);
 
     // Assert block
     await t.expect(await inventoryPage.currentURL()).eql(URLS.INVENTORY_PAGE);
